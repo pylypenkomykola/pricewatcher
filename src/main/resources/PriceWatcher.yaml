@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /watch:
+    post:
+      tags:
+        - price
+      operationId: startWatching
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+      responses:
+        '201':
+          description: Successfully watched
+          content:
+            application/json:
+              schema:
+                type: string
+
+components:
+  schemas:
+    ProductDto:
+      type: object
+      properties:
+        market:
+          $ref: '#/components/schemas/MarketPlaceEnum'
+        url:
+          type: string
+    MarketPlaceEnum:
+      type: string
+      enum:
+        - AMAZON
+        - EK.UA
